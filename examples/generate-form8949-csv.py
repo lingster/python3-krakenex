@@ -28,13 +28,12 @@ def date_str(nix_time):
 
 # return formated Trades History request data
 def data(start, end, ofs):
-    req_data = {'type': 'all',
+    return {'type': 'all',
                 'trades': 'true',
                 'start': str(date_nix(start)),
                 'end': str(date_nix(end)),
                 'ofs': str(ofs)
                 }
-    return req_data
 
 k = krakenex.API()
 k.load_key('kraken.key')
@@ -97,7 +96,7 @@ for i,rowi in trades.iterrows():
 form8949 = pd.concat(line_items, axis=0)
 print('form8949: ')
 print(form8949)
-print('2(d) Totals. Proceeds ' + str(total_proceeds))
-print('2(e) Totals. Cost or other basis. ' + str(total_cost))
-print('2(h) Gain or (loss). ' + str(total_net))
+print(f'2(d) Totals. Proceeds {str(total_proceeds)}')
+print(f'2(e) Totals. Cost or other basis. {str(total_cost)}')
+print(f'2(h) Gain or (loss). {str(total_net)}')
 form8949.to_csv('form8949.csv')

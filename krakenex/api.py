@@ -62,9 +62,10 @@ class API(object):
         self.uri = 'https://api.kraken.com'
         self.apiversion = '0'
         self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'krakenex/' + version.__version__ + ' (+' + version.__url__ + ')'
-        })
+        self.session.headers.update(
+            {'User-Agent': f'krakenex/{version.__version__} (+{version.__url__})'}
+        )
+
         self.response = None
         self._json_options = {}
         return
@@ -157,7 +158,7 @@ class API(object):
         if data is None:
             data = {}
 
-        urlpath = '/' + self.apiversion + '/public/' + method
+        urlpath = f'/{self.apiversion}/public/{method}'
 
         return self._query(urlpath, data, timeout = timeout)
 
@@ -183,7 +184,7 @@ class API(object):
 
         data['nonce'] = self._nonce()
 
-        urlpath = '/' + self.apiversion + '/private/' + method
+        urlpath = f'/{self.apiversion}/private/{method}'
 
         headers = {
             'API-Key': self.key,

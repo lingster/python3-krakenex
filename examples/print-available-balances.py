@@ -23,7 +23,7 @@ orders = k.query_private('OpenOrders')
 balance = balance['result']
 orders = orders['result']
 
-newbalance = dict()
+newbalance = {}
 for currency in balance:
     # remove first symbol ('Z' or 'X'), but not for GNO or DASH
     newname = currency[1:] if len(currency) == 4 and currency != "DASH" else currency
@@ -54,10 +54,7 @@ for _, o in orders['open'].items():
 
 for k, v in balance.items():
     # convert to string for printing
-    if v == D('0'):
-        s = '0'
-    else:
-        s = str(v)
+    s = '0' if v == D('0') else str(v)
     # remove trailing zeros (remnant of being decimal)
     s = s.rstrip('0').rstrip('.') if '.' in s else s
     #

@@ -26,13 +26,12 @@ def date_str(nix_time):
 
 # return formatted TradesHistory request data
 def date(start, end, ofs):
-    req_data = {'type': 'all',
+    return {'type': 'all',
                 'trades': 'true',
                 'start': str(date_nix(start)),
                 'end': str(date_nix(end)),
                 'ofs': str(ofs)
                 }
-    return req_data
 
 k = krakenex.API()
 k.load_key('kraken.key')

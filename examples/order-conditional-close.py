@@ -18,7 +18,7 @@ def main():
     kraken = krakenex.API()
     kraken.load_key('kraken.key')
 
-    response = kraken.query_private('AddOrder',
+    return kraken.query_private('AddOrder',
                                     {'pair': 'XXBTZEUR',
                                      'type': 'buy',
                                      'ordertype': 'limit',
@@ -31,7 +31,6 @@ def main():
                                      'close[pair]': 'XXBTZEUR',
                                      'close[type]': 'sell',
                                      'close[volume]': '1'})
-    return response
 
 if __name__ == '__main__':
     ret = main()

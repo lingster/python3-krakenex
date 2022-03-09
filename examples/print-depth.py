@@ -17,4 +17,4 @@ try:
     response = kraken.query_public('Depth', {'pair': 'XXBTZUSD', 'count': '10'})
     pprint.pprint(response)
 except HTTPError as e:
-    print(str(e))
+    print(e)
